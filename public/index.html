@@ -1,65 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Employee Performance Rating</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="utf-8">
+  <title>Employee Performance Rating - Supervisory & Administrative</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <img src="/assets/FJD-Seal.png" alt="" id="seal" onerror="this.style.display='none'">
-      <h1>Employee Performance Rating</h1>
-    </header>
 
-    <section id="form-section" class="card">
-      <h2>New / Edit Rating</h2>
-      <form id="rating-form" autocomplete="off">
-        <div class="row">
-          <label>Employee Name<input name="employee_name" required></label>
-          <label>Employee ID<input name="employee_id"></label>
-        </div>
+<div class="header-container">
+  <img src="/assets/FJD-Seal.png" alt="FJD Seal" class="logo">
+  <div class="header-text">
+    <h1>First Judicial District of Pennsylvania</h1>
+    <h2>Employee Performance Rating - Supervisory & Administrative</h2>
+  </div>
+</div>
 
-        <div class="row">
-          <label>Position<input name="position"></label>
-          <label>Department<input name="department"></label>
-        </div>
+<form id="performanceRatingForm">
+  <table class="header-table">
+    <tr>
+      <td>EMPLOYEE NAME: <span class="asterisk">*</span>
+        <input type="text" name="employee_name" id="name" maxlength="35" required>
+      </td>
+      <td>EMPLOYEE I.D.: <span class="asterisk">*</span>
+        <input type="text" name="employee_id" id="ID" maxlength="10" required>
+      </td>
+    </tr>
+    <tr>
+      <td>POSITION CLASSIFICATION: <span class="asterisk">*</span>
+        <input type="text" name="position" id="position" maxlength="25" required>
+      </td>
+      <td>DEPARTMENT: <span class="asterisk">*</span>
+        <input type="text" name="department" id="department" maxlength="16" required>
+      </td>
+    </tr>
+  </table>
 
-        <div class="row">
-          <label>Reviewer<input name="reviewer"></label>
-          <label>Period Start<input name="review_period_start" type="date"></label>
-          <label>Period End<input name="review_period_end" type="date"></label>
-        </div>
+  <div class="performance-section">
+    <h3>Performance Ratings</h3>
+    <p class="performance-link">
+      <a href="/assets/new performance rating pdf.pdf#page=2" target="_blank">Click here for Guidelines</a>
+    </p>
+    <p>U = Unsatisfactory, NI = Needs Improvement, ME = Meets Expectations, EE = Exceeds Expectations</p>
+  </div>
 
-        <label>Overall Rating
-          <select name="overall_rating">
-            <option value="">--select--</option>
-            <option>Outstanding</option>
-            <option>Exceeds Expectations</option>
-            <option>Meets Expectations</option>
-            <option>Needs Improvement</option>
-          </select>
-        </label>
+  <table class="performance-factor-table">
+    <tr>
+      <th>Performance Factors</th><th>Rating</th>
+    </tr>
+    <tr>
+      <td><span class="performance-bold">1. QUALITY OF WORK:</span> Accuracy, neatness and completeness of work.</td>
+      <td>
+        <select name="rating_quality_of_work" required>
+          <option value="" hidden></option>
+          <option>U</option><option>NI</option><option>ME</option><option>EE</option>
+        </select>
+      </td>
+    </tr>
+    <!-- Repeat all other rows from your original -->
+  </table>
 
-        <label>Strengths<textarea name="strengths" rows="3"></textarea></label>
-        <label>Areas to Improve<textarea name="improvements" rows="3"></textarea></label>
-        <label>Goals<textarea name="goals" rows="3"></textarea></label>
+  <div class="comments-section">
+    <p>Provide relevant comments:</p>
+    <textarea name="comments" maxlength="800" id="comments"></textarea>
+    <span id="comments-counter" class="char-counter">0/800</span>
+  </div>
 
-        <div class="actions">
-          <button id="save-btn" type="submit">Save Rating</button>
-          <button id="reset-btn" type="button">Reset</button>
-          <button id="export-btn" type="button" style="margin-left:auto;">Export Selected to PDF</button>
-        </div>
-      </form>
-    </section>
+  <div class="signature-section">
+    <p>Reviewing Officer Signature: <input type="text" name="reviewing_officer_signature"> Date: <input type="date" name="reviewing_officer_date"></p>
+  </div>
 
-    <section id="list-section" class="card">
-      <h2>Saved Ratings</h2>
-      <div id="ratings-list">Loading...</div>
-    </section>
-  </main>
+  <div class="actions">
+    <button id="save-btn" type="submit">Save Rating</button>
+    <button id="reset-btn" type="button">Reset</button>
+    <select id="template-select">
+      <option value="default">Performance Rating</option>
+      <option value="workplan">Employee Work Plan</option>
+      <option value="outside">Outside Employment</option>
+      <option value="blanker">Blanker (Supervisory)</option>
+    </select>
+    <button id="export-btn" type="button">Export to PDF</button>
+  </div>
+</form>
 
-  <script src="/script.js"></script>
+<section id="list-section" class="card">
+  <h2>Saved Ratings</h2>
+  <div id="ratings-list">Loading...</div>
+</section>
+
+<section class="card">
+  <h2>Blank Forms</h2>
+  <div class="actions">
+    <a class="btn" href="/assets/new performance rating pdf.pdf" target="_blank">Performance Rating (blank)</a>
+    <a class="btn" href="/assets/Employee Work Plan form.pdf" target="_blank">Employee Work Plan</a>
+    <a class="btn" href="/assets/Outside Employment.pdf" target="_blank">Outside Employment</a>
+    <a class="btn" href="/assets/Blanker  - Supervisory and Administrative 02-13 .pdf" target="_blank">Blanker</a>
+  </div>
+</section>
+
 </body>
 </html>
