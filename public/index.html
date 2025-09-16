@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Employee Performance Rating</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <img src="/assets/FJD-Seal.png" alt="" id="seal" onerror="this.style.display='none'">
+      <h1>Employee Performance Rating</h1>
+    </header>
+
+    <section id="form-section" class="card">
+      <h2>New / Edit Rating</h2>
+      <form id="rating-form" autocomplete="off">
+        <div class="row">
+          <label>Employee Name<input name="employee_name" required></label>
+          <label>Employee ID<input name="employee_id"></label>
+        </div>
+
+        <div class="row">
+          <label>Position<input name="position"></label>
+          <label>Department<input name="department"></label>
+        </div>
+
+        <div class="row">
+          <label>Reviewer<input name="reviewer"></label>
+          <label>Period Start<input name="review_period_start" type="date"></label>
+          <label>Period End<input name="review_period_end" type="date"></label>
+        </div>
+
+        <label>Overall Rating
+          <select name="overall_rating">
+            <option value="">--select--</option>
+            <option>Outstanding</option>
+            <option>Exceeds Expectations</option>
+            <option>Meets Expectations</option>
+            <option>Needs Improvement</option>
+          </select>
+        </label>
+
+        <label>Strengths<textarea name="strengths" rows="3"></textarea></label>
+        <label>Areas to Improve<textarea name="improvements" rows="3"></textarea></label>
+        <label>Goals<textarea name="goals" rows="3"></textarea></label>
+
+        <div class="actions">
+          <button id="save-btn" type="submit">Save Rating</button>
+          <button id="reset-btn" type="button">Reset</button>
+          <button id="export-btn" type="button" style="margin-left:auto;">Export Selected to PDF</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="list-section" class="card">
+      <h2>Saved Ratings</h2>
+      <div id="ratings-list">Loading...</div>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
